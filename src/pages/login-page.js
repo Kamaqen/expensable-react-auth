@@ -1,4 +1,9 @@
-export default function LoginPage({ setUser }) {
+import { useContext } from "react";
+import { AuthContext } from "../App";
+import { login } from "../services/session-services";
+
+export default function LoginPage() {
+  const { setUser } = useContext(AuthContext);
   function handleSubmit(event) {
     event.preventDefault();
     console.log(event.target.elements);
@@ -9,33 +14,7 @@ export default function LoginPage({ setUser }) {
     };
 
     login(credentials)
-      .then(
-        (user) =>
-          ```jsx
-import { login } from "../services/session-services";
-
-export default function LoginPage({ setUser }) {
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(event.target.elements);
-    const { email, password } = event.target.elements;
-    const credentials = {
-      email: email.value,
-      password: password.value
-    };
-
-    login(credentials)
       .then((user) => setUser(user))
-      .catch((error) => console.log(error));
-  }
-  return (
-    <div>
-      ...
-    </div>
-  );
-}
-```,
-      )
       .catch((error) => console.log(error));
   }
   return (
@@ -44,7 +23,7 @@ export default function LoginPage({ setUser }) {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="name" />
         </div>
         <div>
           <label htmlFor="password">Password</label>
