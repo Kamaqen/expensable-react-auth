@@ -1,9 +1,15 @@
-import "./styles.css";
+import { useEffect, useState } from "react";
+import LoginPage from "./pages/login-page";
+import { getUser } from "./services/user-services";
 
 export default function App() {
-  return (
-    <div>
-      <h3>Hello Testino!</h3>
-    </div>
-  );
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getUser()
+      .then((u) => setUser(u))
+      .catch((error) => console.log(error));
+  }, []);
+
+  return user ? <p>User logged</p> : <LoginPage setUser={setUser} />;
 }
