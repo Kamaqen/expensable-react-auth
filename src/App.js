@@ -14,8 +14,9 @@ export default function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  return;
-  <AuthContext.Provider value={{ user, setUser }}>
-    {user ? <ProfilePage /> : <LoginPage />}
-  </AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {user ? <ProfilePage /> : <LoginPage />}
+    </AuthContext.Provider>
+  );
 }
